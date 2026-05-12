@@ -1,0 +1,35 @@
+{
+  "name": "sonic-play-backend",
+  "version": "1.0.0",
+  "description": "Sonic Play AI 音乐工作室 - 后端服务",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "uuid": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^3.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  }
+}

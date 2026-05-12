@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;800;900&family=JetBrains+Mono:wght@500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Duolingo 配色方案 */
+  --color-primary: #58cc02;
+  --color-primary-dark: #46a302;
+  --color-primary-light: #d7ffb1;
+  --color-primary-container: #58cc02;
+
+  --color-secondary: #1cb0f6;
+  --color-secondary-dark: #1899d6;
+  --color-secondary-container: #1cb0f6;
+
+  --color-tertiary: #ffc800;
+  --color-tertiary-dark: #e5b300;
+  --color-tertiary-container: #ffc800;
+
+  --color-quaternary: #ff4b4b;
+  --color-quaternary-dark: #d33131;
+  --color-quaternary-container: #ff4b4b;
+
+  --color-surface: #ffffff;
+  --color-surface-container: #f7f7f7;
+  --color-surface-container-low: #f9f9f9;
+  --color-surface-container-high: #f0f0f0;
+  --color-surface-variant: #e5e5e5;
+  --color-outline: #afafaf;
+  --color-outline-variant: #e5e5e5;
+  --color-background: #f7f7f7;
+  --color-on-surface: #4b4b4b;
+  --color-on-surface-variant: #777777;
+
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2.5rem;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-[#4b4b4b] font-sans antialiased selection:bg-primary/20 transition-colors duration-300;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-black tracking-tight;
+  }
+}
+
+@layer components {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* 深色模式 */
+.dark {
+  --color-surface: #131f24;
+  --color-surface-container: #1e2c33;
+  --color-surface-container-low: #1a262b;
+  --color-surface-container-high: #26353d;
+  --color-surface-variant: #37464f;
+  --color-outline: #556b78;
+  --color-outline-variant: #37464f;
+  --color-background: #131f24;
+  --color-on-surface: #afafaf;
+  --color-on-surface-variant: #777777;
+}
+
+.dark body {
+  @apply bg-[#131f24] text-[#afafaf];
+}
+
+/* Duolingo Bounce Animation - duopop */
+@keyframes duopop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.animate-pop {
+  animation: duopop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Sparkle 动画 */
+@keyframes sparkle {
+  0% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+  100% { opacity: 0; transform: scale(0) rotate(360deg); }
+}
+
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  animation: sparkle 0.6s ease-out forwards;
+}
+
+/* 文本颜色工具类 */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-tertiary {
+  color: var(--color-tertiary);
+}
+
+.text-quaternary {
+  color: var(--color-quaternary);
+}
+
+.text-outline {
+  color: var(--color-outline);
+}
+
+.text-on-surface {
+  color: var(--color-on-surface);
+}
+
+.text-on-surface-variant {
+  color: var(--color-on-surface-variant);
+}
+
+/* 背景色工具类 */
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-tertiary {
+  background-color: var(--color-tertiary);
+}
+
+.bg-quaternary {
+  background-color: var(--color-quaternary);
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.bg-surface-container {
+  background-color: var(--color-surface-container);
+}
+
+.bg-surface-container-low {
+  background-color: var(--color-surface-container-low);
+}
+
+.bg-surface-container-high {
+  background-color: var(--color-surface-container-high);
+}
+
+.bg-surface-variant {
+  background-color: var(--color-surface-variant);
+}
+
+.bg-outline-variant {
+  background-color: var(--color-outline-variant);
+}
+
+.bg-primary-container {
+  background-color: var(--color-primary-container);
+}
+
+.bg-secondary-container {
+  background-color: var(--color-secondary-container);
+}
+
+/* 边框色工具类 */
+.border-primary {
+  border-color: var(--color-primary);
+}
+
+.border-primary-dark {
+  border-color: var(--color-primary-dark);
+}
+
+.border-secondary {
+  border-color: var(--color-secondary);
+}
+
+.border-secondary-dark {
+  border-color: var(--color-secondary-dark);
+}
+
+.border-tertiary {
+  border-color: var(--color-tertiary);
+}
+
+.border-tertiary-dark {
+  border-color: var(--color-tertiary-dark);
+}
+
+.border-quaternary {
+  border-color: var(--color-quaternary);
+}
+
+.border-quaternary-dark {
+  border-color: var(--color-quaternary-dark);
+}
+
+.border-outline-variant {
+  border-color: var(--color-outline-variant);
+}
+
+/* 阴影工具类 - Duolingo 风格 */
+.shadow-duo-primary {
+  box-shadow: 0 6px 0 0 var(--color-primary-dark);
+}
+
+.shadow-duo-secondary {
+  box-shadow: 0 6px 0 0 var(--color-secondary-dark);
+}
+
+.shadow-duo-tertiary {
+  box-shadow: 0 6px 0 0 var(--color-tertiary-dark);
+}
+
+.shadow-duo-quaternary {
+  box-shadow: 0 6px 0 0 var(--color-quaternary-dark);
+}
+
+/* 选择高亮 */
+.selection\:bg-primary\/20::selection {
+  background-color: rgba(88, 204, 2, 0.2);
+}

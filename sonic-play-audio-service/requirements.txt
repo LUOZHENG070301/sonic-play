@@ -1,0 +1,11 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.0
+python-multipart==0.0.9
+demucs==4.0.1
+basic-pitch==0.3.0
+torch==2.1.0
+torchaudio==2.1.0
+numpy==1.26.0
+aiofiles==23.2.1
+python-dotenv==1.0.0
+pydantic==2.9.0

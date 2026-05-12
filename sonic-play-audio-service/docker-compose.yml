@@ -1,0 +1,64 @@
+# ============================================
+# SonicPlay 音频处理微服务 Docker Compose 配置
+# ============================================
+
+version: "3.8"
+
+services:
+  audio-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sonic-play-audio-service
+    restart: unless-stopped
+
+    # GPU 配置（需要 NVIDIA Container Toolkit）
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]       # 使用第一块 GPU
+              capabilities: [gpu]
+
+    # 端口映射
+    ports:
+      - "8000:8000"
+
+    # 卷挂载
+    volumes:
+      # 输出目录（持久化分离和转录结果）
+      - ./output:/app/output
+      # 上传临时目录
+      - ./uploads:/app/uploads
+
+    # 环境变量
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DEVICE=cuda
+      - GPU_ID=0
+      - DEBUG=false
+      - LOG_LEVEL=info
+      - MAX_CONCURRENT_TASKS=2
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:5173
+      - OUTPUT_DIR=/app/output
+      - UPLOAD_DIR=/app/uploads
+
+    # 健康检查
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s    # 首次启动等待 60 秒（模型加载需要时间）
+
+    # 日志配置
+    logging:
+      driver: json-file
+      options:
+        max-size: "100m"
+        max-file: "5"
+
+    # 共享内存（Demucs 处理需要）
+    shm_size: '4gb'
